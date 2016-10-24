@@ -1,5 +1,5 @@
 
-#include "DataFormat-TypeDef.hh"
+#include "DataFormat-TypeDef.h"
 #include <TF1.h>
 #include <TMath.h>
 
@@ -14,9 +14,9 @@ int main(){
   f1->SetParameter(0,3);
 
   // OK Let's create LArLight file and fill waveform
-  larlight::storage_manager my_storage;
+  larlite::storage_manager my_storage;
 
-  my_storage.set_io_mode(larlight::storage_manager::WRITE);
+  my_storage.set_io_mode(larlite::storage_manager::WRITE);
 
   my_storage.set_out_filename("sample_pmt_waveform.root");
 
@@ -27,7 +27,7 @@ int main(){
   }
 
   // Let's fill event_fifo for 100 events.
-  larlight::event_pmtfifo* my_event_fifo = (larlight::event_pmtfifo*)(my_storage.get_data(larlight::DATA::PMTFIFO));
+  larlite::event_pmtfifo* my_event_fifo = (larlite::event_pmtfifo*)(my_storage.get_data(larlite::DATA::PMTFIFO));
   int run_id = 1;
   int subrun_id = 1;
 
@@ -43,16 +43,16 @@ int main(){
     my_event_fifo->reserve(n_channels);
     for( int ch=0; ch<n_channels; ++ch) {
 
-      larlight::pmtfifo wf;
-      
+      larlite::pmtfifo wf;
+
       wf.set_channel_number(ch);
-      //wf.set_disc_id(larlight::FEM::COSMIC_DISC);
+      //wf.set_disc_id(larlite::FEM::COSMIC_DISC);
       wf.reserve(20);
       for(size_t wf_index=0; wf_index<20; ++wf_index)
 
 	wf.push_back(f1->Eval((double)(wf_index - i%6)));
 
-      // Append 
+      // Append
       my_event_fifo->push_back(wf);
     }
 
@@ -65,5 +65,3 @@ int main(){
   my_storage.close();
   return 1;
 }
-
-

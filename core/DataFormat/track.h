@@ -2,7 +2,7 @@
  * \file track.h
  *
  * \ingroup DataFormat
- * 
+ *
  * \brief Class def header for track data container
  *
  * @author Kazu - Nevis 2013
@@ -27,9 +27,9 @@ namespace larlite {
      LArSoft Track class equivalent data container
   */
   class track : public data_base {
-    
+
   public:
-    
+
     /// Default constructor
     track() : data_base(data::kTrack) { clear_data(); }
 
@@ -41,7 +41,7 @@ namespace larlite {
 				     fFitMomentum(original.fFitMomentum),
 				     fID(original.fID)
     {}
-    
+
     /// Default destructor
     virtual ~track(){}
 
@@ -111,35 +111,35 @@ namespace larlite {
     int                                 fID;            ///< track's ID
 
   private:
-    
+
   };
 
   /**
-     \class event_track 
+     \class event_track
      A collection storage class of multiple tracks.
   */
   class event_track : public std::vector<larlite::track>, public event_base {
-    
+
   public:
-    
+
     /// Default constructor
     event_track(std::string name="noname") : event_base(data::kTrack,name) { clear_data(); }
-    
+
     /// Default copy constructor
     event_track(const event_track& original) : std::vector<larlite::track>(original),
 					       event_base(original)
     {}
-    
+
     /// Default destructor
     ~event_track(){}
-    
+
     /// Method to clear currently held data contents in the buffer
     virtual void clear_data(){event_base::clear_data(); clear();}
-    
+
   private:
-    
+
   };
 }
 #endif
 
-/** @} */ // end of doxygen group 
+/** @} */ // end of doxygen group

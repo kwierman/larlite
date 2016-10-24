@@ -2,7 +2,7 @@
  * \file data_base.h
  *
  * \ingroup DataFormat
- * 
+ *
  * \brief Base class def for data class
  *
  * @author Kazu - Nevis 2013
@@ -29,21 +29,21 @@ namespace larlite{
   */
 
   class data_base {
-    
+
   public:
-    
+
     /// Default constructor
     data_base(unsigned short type = data::kINVALID_USHORT);
 
     /// Default copy constructor to avoid memory leak in ROOT streamer
     data_base(const data_base &original) : _type(original._type) {}
-    
+
     /// Default destructor
     virtual ~data_base(){}
-    
+
     /// Clear method
     virtual void clear_data(){}
-    
+
     /// data type getter
     const unsigned short& data_type() const;
 
@@ -77,7 +77,7 @@ namespace larlite{
     const std::string& name() const;
     /// product_id creator
     const ::larlite::product_id id() const;
-    
+
   private:
     ::larlite::product_id _id;
 
@@ -104,7 +104,7 @@ namespace larlite{
 
     //
     // Simple type variable getters
-    // 
+    //
     /// Run number getter
     const unsigned int& run() const;
 
@@ -139,7 +139,7 @@ namespace larlite{
 
     //
     // Simple type variable getters
-    // 
+    //
     /// Run number getter
     const unsigned int& run() const;
     /// Sub-Run number getter
@@ -161,27 +161,27 @@ namespace larlite{
      \class event_base
      A base class for event-wise data holder class
   */
-  class event_base : public output_base 
+  class event_base : public output_base
   {
     friend class storage_manager;
   public:
-    
+
     /// Default constructor
     event_base(unsigned short    type = data::kINVALID_USHORT,
 	       const std::string name = "noname");
-    
+
     /// Default copy constructor to avoid memory leak in ROOT streamer
     event_base(const event_base &original);
-    
+
     /// Default destructor
     virtual ~event_base(){}
-    
+
     /// Clear method
     virtual void clear_data();
 
     //
     // Simple type variable getters
-    //     
+    //
     /// run number getter
     unsigned int run      () const;
     /// sub-run number getter
@@ -194,7 +194,7 @@ namespace larlite{
     unsigned int fSubRunNumber; ///< Sub-Run number
     unsigned int fEventID;      ///< Event ID
 
-  private:
+public:
     /// run number setter
     void set_run      (unsigned int run);
     /// sub-run number setter
@@ -205,4 +205,4 @@ namespace larlite{
   };
 }
 #endif
-/** @} */ // end of doxygen group 
+/** @} */ // end of doxygen group
