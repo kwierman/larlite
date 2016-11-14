@@ -1,0 +1,8 @@
+FILE(GLOB headers *.h)
+FILE(GLOB sources *.cxx)
+LIST(REMOVE_ITEM headers ${CMAKE_CURRENT_SOURCE_DIR}/LinkDef.h)
+ADD_LIBRARY(LArLite_Base SHARED ${headers} ${sources} )
+
+TARGET_LINK_LIBRARIES(LArLite_Base ${ROOT_LIBRARIES} ${Boost_LIBRARIES} ${PythonLibs_LIBRARIES})
+INSTALL(FILES ${headers} DESTINATION include)
+INSTALL(TARGETS LArLite_Base  DESTINATION lib)

@@ -1,0 +1,9 @@
+import glob
+import os
+
+Import('env')
+
+cxx = glob.glob('./*.cxx')
+h = [i for i in glob.glob('./*.h') if "LinkDef" not in i]
+
+env.SharedLibrary('LArLite_Base', cxx+h)

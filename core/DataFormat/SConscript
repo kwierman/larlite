@@ -1,0 +1,8 @@
+import glob
+
+cxx = glob.glob('./*.cxx')
+h = [i for i in glob.glob('./*.h') if "LinkDef" not in i]
+
+Import('env')
+
+SharedLibrary('LArLite_DataFormat', cxx+h)
