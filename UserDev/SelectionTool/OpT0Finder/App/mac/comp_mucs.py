@@ -75,6 +75,7 @@ print
 ctr=0
 max_ctr=20
 geo=larutil.Geometry.GetME()
+data_cosmic_disc = open('data_cosmic_disc.csv','w')
 while ctr<max_ctr:
 
     print
@@ -146,7 +147,8 @@ while ctr<max_ctr:
             leg_frame.set_facecolor('white')
             plt.title('Flash PE Distribution',fontsize=24,fontweight='bold')
             plt.xlim(-0.5,31.5)
-            plt.show()
+            plt.save("figure{}.png".format(ctr))
+            #plt.show()
             break
             
     for match_idx in xrange(match_v.size()):
@@ -158,6 +160,9 @@ while ctr<max_ctr:
         print
         print 'Match #',match_idx,
         print 'TPC:',match.tpc_id,'PMT:',match.flash_id,'Score:',match.score,'TPC point:',match.tpc_point.x,match.tpc_point.y,match.tpc_point.z
+
+
+        
 
         xmin = 1e4
         xmax = 0
@@ -174,6 +179,8 @@ while ctr<max_ctr:
         flash = np.array(flash.pe_v)
 
         print 'Max PE @',flash.argmax(),'fraction',flash[flash.argmax()]/flash.sum()
+
+        data_cosmic_disc.write('{},{},{},{}\n'.format(match_idx, xmin, match.tpc_point.x,match.score ))
         
         hypothesis = np.array(match.hypothesis)
 
@@ -197,8 +204,8 @@ while ctr<max_ctr:
         leg_frame.set_facecolor('white')
         plt.title('Flash PE Distribution',fontsize=24,fontweight='bold')
         plt.xlim(-0.5,31.5)
-        plt.show()
-        
+        #plt.show()
+        plt.savefig("figure{}.png".format(ctr))
         #sys.stdin.readline()
     print 'Type event entry or hit enter'
     entry=sys.stdin.readline().rstrip('\n')

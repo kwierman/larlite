@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 import sys
+import ROOT
+from ROOT import larlite
 try:
     from larlite import larlite as fmwk
 except ImportError:

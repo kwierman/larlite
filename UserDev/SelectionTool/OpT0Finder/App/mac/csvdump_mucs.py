@@ -76,7 +76,7 @@ fout_pe.write(line_pe)
 fout=open('data.txt','w')
 fout.write('entry,tpcid,xmin,xmax,time,x,t,q,oppe,hypope,mult\n')
 ctr=0
-while ctr < 500:
+while ctr < 1000:
     my_proc.process_event(ctr)
 
     match_v = my_unit.MatchResult()

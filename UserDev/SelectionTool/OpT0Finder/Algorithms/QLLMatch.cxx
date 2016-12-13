@@ -148,7 +148,7 @@ namespace flashana {
     
     // Estimate position
     FlashMatch_t res;
-    if (isnan(_qll)) return res;
+    if (std::isnan(_qll)) return res;
     
     res.tpc_point.x = res.tpc_point.y = res.tpc_point.z = 0;
     
@@ -261,7 +261,7 @@ namespace flashana {
 	
       case kLLHD:
 	_current_llhd -= std::log10(TMath::Poisson(O,H));
-	if(isnan(_current_llhd) || isinf(_current_llhd)) _current_llhd = 1.e6;
+	if(std::isnan(_current_llhd) || std::isinf(_current_llhd)) _current_llhd = 1.e6;
       case kChi2:
 	Error = O;
 	if( Error < 1.0 ) Error = 1.0;
